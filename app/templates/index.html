@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TNEA Professional System</title>
+</head>
+<body>
+
+    <h2>TNEA Seat Prediction</h2>
+
+    <form method="POST">
+        Cutoff: <input type="number" step="0.1" name="cutoff"><br><br>
+
+        Community:
+        <select name="community">
+            <option>OC</option>
+            <option>BC</option>
+            <option>MBC</option>
+        </select><br><br>
+
+        District:
+        <input type="text" name="district"><br><br>
+
+        Quota:
+        <select name="quota">
+            <option>Government</option>
+            <option>Management</option>
+        </select><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if results %}
+        <h3>Results:</h3>
+        <table border="1">
+            <tr>
+                <th>College</th>
+                <th>Course</th>
+                <th>District</th>
+                <th>Quota</th>
+                <th>Closing Cutoff</th>
+                <th>Chance</th>
+            </tr>
+
+            {% for r in results %}
+            <tr>
+                <td>{{ r.college }}</td>
+                <td>{{ r.course }}</td>
+                <td>{{ r.district }}</td>
+                <td>{{ r.quota }}</td>
+                <td>{{ r.closing_cutoff }}</td>
+                <td>{{ r.chance }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+</body>
+</html>
